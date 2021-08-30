@@ -4,4 +4,5 @@ torch
 torchmetrics
 transformers
 pandas
+pytorch-lightning
 sadice
