@@ -2,19 +2,22 @@ import torch
 import transformers
 from datasets import load_dataset
 from torch.utils.data import DataLoader
+
 from torchsampler import ImbalancedDatasetSampler
 
 
 def get_data_loaders(
     tokenizer: transformers.PreTrainedTokenizer,
     batch_size: int = 64,
+    return_loader: bool = True,
     use_imbalanced: bool = True,
 ):
     r"""토크나이저를 입력하면 해당 토크나이저로 인코딩 된 DataLoader를 반환하는 함수
     args:
         tokenizer: 사용할 토크나이저
-        batch_size: 배치 사이즈, 기본값=64,
-        use_imbalanced: ImbalancedDatasetSampler를 사용할 지의 여부, 기본값=True
+        batch_size: int: 배치 사이즈, 기본값=64,
+        return_loader: bool: True면 DataLoader를 반환하고, False면 Dataset을 반환합니다.
+        use_imbalanced: bool: ImbalancedDatasetSampler를 사용할 지의 여부, 기본값=True
 
     return:
         train_loader, val_loader, test_loader: Tuple[DataLoader]
@@ -37,6 +40,9 @@ def get_data_loaders(
         type="torch",
         columns=["input_ids", "token_type_ids", "attention_mask", "labels"],
     )
+
+    if not return_loader:
+        return all_data["train"], all_data["val"], all_data["test"]
 
     def get_label(dataset):
         return dataset["labels"]
