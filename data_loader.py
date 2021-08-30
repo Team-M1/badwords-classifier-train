@@ -52,10 +52,12 @@ def get_data_loaders(
             all_data["train"], callback_get_label=get_label,
         )
         train_loader = DataLoader(
-            all_data["train"], batch_size=batch_size, sampler=im_sampler
+            all_data["train"], batch_size=batch_size, shuffle=True, sampler=im_sampler
         )
     else:
-        train_loader = DataLoader(all_data["train"], batch_size=batch_size)
+        train_loader = DataLoader(
+            all_data["train"], batch_size=batch_size, shuffle=True
+        )
 
     val_loader = DataLoader(all_data["val"], batch_size=batch_size)
     test_loader = DataLoader(all_data["test"], batch_size=batch_size)
