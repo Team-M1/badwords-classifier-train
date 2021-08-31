@@ -42,7 +42,11 @@ def get_data_loaders(
     )
 
     if not return_loader:
-        return all_data["train"], all_data["val"], all_data["test"]
+        return (
+            all_data["train"].remove_columns("content"),
+            all_data["val"].remove_columns("content"),
+            all_data["test"].remove_columns("content"),
+        )
 
     def get_label(dataset):
         return dataset["labels"]
@@ -63,4 +67,3 @@ def get_data_loaders(
     test_loader = DataLoader(all_data["test"], batch_size=batch_size)
 
     return train_loader, val_loader, test_loader
-
