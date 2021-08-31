@@ -42,7 +42,11 @@ def get_data_loaders(
     )
 
     if not return_loader:
-        return all_data["train"], all_data["val"], all_data["test"]
+        return (
+            all_data["train"].remove_columns("content"),
+            all_data["val"].remove_columns("content"),
+            all_data["test"].remove_columns("content"),
+        )
 
     def get_label(dataset):
         return dataset["labels"]
