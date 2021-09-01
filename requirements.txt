@@ -6,3 +6,4 @@ transformers
 pandas
 pytorch-lightning
 sadice
+scikit-learn
