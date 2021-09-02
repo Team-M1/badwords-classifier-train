@@ -11,6 +11,7 @@ def get_data_loaders(
     batch_size: int = 64,
     return_loader: bool = True,
     use_imbalanced: bool = True,
+    device=torch.device("cuda"),
 ):
     r"""토크나이저를 입력하면 해당 토크나이저로 인코딩 된 DataLoader를 반환하는 함수
     args:
@@ -39,6 +40,7 @@ def get_data_loaders(
     all_data.set_format(
         type="torch",
         columns=["input_ids", "token_type_ids", "attention_mask", "labels"],
+        device=device,
     )
 
     if not return_loader:
@@ -56,7 +58,7 @@ def get_data_loaders(
             all_data["train"], callback_get_label=get_label,
         )
         train_loader = DataLoader(
-            all_data["train"], batch_size=batch_size, shuffle=True, sampler=im_sampler
+            all_data["train"], batch_size=batch_size, sampler=im_sampler
         )
     else:
         train_loader = DataLoader(
