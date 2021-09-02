@@ -8,21 +8,28 @@ from torchsampler import ImbalancedDatasetSampler
 
 def get_data_loaders(
     tokenizer: transformers.PreTrainedTokenizer,
-    batch_size: int = 64,
+    batch_size: int = 32,
     return_loader: bool = True,
     use_imbalanced: bool = True,
-    device=torch.device("cuda"),
+    device="cpu",
 ):
     r"""토크나이저를 입력하면 해당 토크나이저로 인코딩 된 DataLoader를 반환하는 함수
     args:
         tokenizer: 사용할 토크나이저
-        batch_size: int: 배치 사이즈, 기본값=64,
+        batch_size: int: 배치 사이즈, 기본값=32,
         return_loader: bool: True면 DataLoader를 반환하고, False면 Dataset을 반환합니다.
         use_imbalanced: bool: ImbalancedDatasetSampler를 사용할 지의 여부, 기본값=True
 
     return:
         train_loader, val_loader, test_loader: Tuple[DataLoader]
         """
+
+    if use_imbalanced and device == "cuda":
+        raise ValueError(
+            "use_imbalanced == True에 device == 'cuda'이면 오류가 발생합니다. use_imbalanced를 False로 하거나 device를 cpu로 하십시오."
+        )
+
+    device = torch.device(device)
 
     def encode(data):
         return tokenizer(data["content"], padding="max_length", truncation=True)
