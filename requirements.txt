@@ -7,4 +7,5 @@ pandas
 pytorch-lightning
 sadice
 scikit-learn
+sentencepiece
 optuna
