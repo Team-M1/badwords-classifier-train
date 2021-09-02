@@ -2,7 +2,7 @@ datasets
 torchvision
 torch
 torchmetrics
-transformers
+transformers==4.10.0
 pandas
 pytorch-lightning
 sadice
