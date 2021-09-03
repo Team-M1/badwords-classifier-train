@@ -1,0 +1,11 @@
+datasets
+torchvision
+torch
+torchmetrics
+transformers
+pandas
+pytorch-lightning
+sadice
+scikit-learn
+sentencepiece
+optuna
