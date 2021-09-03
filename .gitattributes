@@ -1,3 +1,0 @@
-model filter=lfs diff=lfs merge=lfs -text
-DistilKoBERT/ filter=lfs diff=lfs merge=lfs -text
-DistilKoBERT/distilkobert.bin filter=lfs diff=lfs merge=lfs -text
