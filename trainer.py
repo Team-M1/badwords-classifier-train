@@ -7,7 +7,7 @@ from transformers import Trainer
 from torchsampler import ImbalancedDatasetSampler
 
 
-class ImbalancedSamplerTrainer(Trainer):
+class ImbalancedSamplerTrainer(Trainer(gradient_clip_val=0.5, gradient_clip_algorithm="value")):
     def get_train_dataloader(self) -> DataLoader:
         train_dataset = self.train_dataset
 
