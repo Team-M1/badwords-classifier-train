@@ -2,12 +2,12 @@ import datasets
 import torch
 from sadice import SelfAdjDiceLoss
 from torch.utils.data import DataLoader
-from pytorch_lightning import Trainer
+from transformers import Trainer
 
 from torchsampler import ImbalancedDatasetSampler
 
 
-class ImbalancedSamplerTrainer(Trainer((gpus="1,3", gradient_clip_val=0.5, gradient_clip_algorithm="value"))):
+class ImbalancedSamplerTrainer(Trainer()):
     def get_train_dataloader(self) -> DataLoader:
         train_dataset = self.train_dataset
 
