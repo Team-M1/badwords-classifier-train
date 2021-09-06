@@ -2,7 +2,7 @@ import datasets
 import torch
 from sadice import SelfAdjDiceLoss
 from torch.utils.data import DataLoader
-from transformers import Trainer
+from pytorch_lightning import Trainer
 
 from torchsampler import ImbalancedDatasetSampler
 
