@@ -36,9 +36,9 @@ def get_data_loaders(
     all_data = load_dataset(
         "csv",
         data_files={
-            "train": "data/train.csv",
-            "val": "data/val.csv",
-            "test": "data/test.csv",
+            "train": "data/train_v2.csv",
+            "val": "data/val_v2.csv",
+            "test": "data/test_v2.csv",
         },
     )
 
