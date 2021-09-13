@@ -19,6 +19,7 @@ def get_data_loaders(
         batch_size: int: 배치 사이즈, 기본값=32,
         return_loader: bool: True면 DataLoader를 반환하고, False면 Dataset을 반환합니다.
         use_imbalanced: bool: ImbalancedDatasetSampler를 사용할 지의 여부, 기본값=True
+
     return:
         train_loader, val_loader, test_loader: Tuple[DataLoader]
         """
@@ -36,9 +37,9 @@ def get_data_loaders(
     all_data = load_dataset(
         "csv",
         data_files={
-            "train": "data/train_v2.csv",
-            "val": "data/val_v2.csv",
-            "test": "data/test_v2.csv",
+            "train": "data/train.csv",
+            "val": "data/val.csv",
+            "test": "data/test.csv",
         },
     )
 
